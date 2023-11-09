@@ -1,32 +1,32 @@
+package LogicaNegocio;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Administrador {
+public class Administrador extends Persona{
 
-    private  static String nombre;
-    private  static String codigo;
-    private  static String rol;
-    private  static String tipoDoc;
-    private  static String numCedula;
+
     private static HashMap<String, String> nombresLaboral = new HashMap<>();
     private static HashMap<String, String> tiposDocs = new HashMap<>();
     private static HashMap<String, String> roles = new HashMap<>();
     private static HashMap<String, String> numCedulas = new HashMap<>();
     private static HashMap<String, ArrayList<String>> mensajes = new HashMap<>();
 
-
+    public Administrador(String codigo, String nombre, String rol, String tipoDoc, String numCedula, String horario, String mensaje, String codigoDestinatario) {
+        super(codigo, nombre, rol, tipoDoc, numCedula, horario, mensaje, codigoDestinatario);
+    }
 
     public void ejecutar(String rol, int codigoAdministrador) {
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\nOpciones para Administradores:");
-            System.out.println("1. Consultar datos empleado");
+            System.out.println("1. Consultar datos LogicaNegocio.empleado");
             System.out.println("2. Consultar todos los empleados");
-            System.out.println("3. Modificar datos de empleado");
-            System.out.println("4. Eliminar empleado");
+            System.out.println("3. Modificar datos de LogicaNegocio.empleado");
+            System.out.println("4. Eliminar LogicaNegocio.empleado");
             System.out.println("5. Revisar mensajes");
             System.out.println("6. Enviar mensaje a coordinador");
             System.out.println("7. Salir");;
@@ -37,7 +37,7 @@ public class Administrador {
             switch (opcion) {
                 case 1:
 
-                    System.out.println("Ingrese el codigo del empleado:");
+                    System.out.println("Ingrese el codigo del LogicaNegocio.empleado:");
                     String codigoEmpleado = scanner.next();
                     scanner.nextLine();
                     String datosEmpleado = verDatos(codigoEmpleado);
@@ -56,7 +56,7 @@ public class Administrador {
                     reviMens(String.valueOf(codigoAdministrador));
                     break;
                 case 6:
-                    System.out.print("Ingrese el codigo del Coordinador: ");
+                    System.out.print("Ingrese el codigo del LogicaNegocio.Coordinador: ");
                     String codigoDestinatario = scanner.next();
                     String enviar = mensCoor(codigoDestinatario);
                     System.out.println(enviar);
@@ -104,7 +104,7 @@ public class Administrador {
     public String modificarDatos(){
         Scanner scanner= new Scanner(System.in);
 
-        System.out.print("Ingrese el codigo del empleado: ");
+        System.out.print("Ingrese el codigo del LogicaNegocio.empleado: ");
         String codigoE = scanner.next();
         scanner.nextLine();
         codigoE.equals(codigo);
@@ -119,7 +119,7 @@ public class Administrador {
 
             switch (opcionModificar) {
                 case 1:
-                    System.out.print("Ingrese el nuevo nombre del empleado: ");
+                    System.out.print("Ingrese el nuevo nombre del LogicaNegocio.empleado: ");
                     nombre = scanner.nextLine();
                     nombresLaboral.put(codigo, nombre);
                     System.out.println("Nombre modificado con éxito.");
@@ -164,7 +164,7 @@ public class Administrador {
                     int rolInt;
                     while (true) {
                         System.out.println("Seleccione su Rol: ");
-                        System.out.print("1. Administrador, 2. Coordinador, 3. Empleado: ");
+                        System.out.print("1. LogicaNegocio.Administrador, 2. LogicaNegocio.Coordinador, 3. Empleado: ");
                         rolInt = Integer.parseInt(scanner.nextLine());
                         if (rolInt >= 1 && rolInt <= 3) {
                             break;
@@ -176,10 +176,10 @@ public class Administrador {
                     String rol;
                     switch (rolInt) {
                         case 1:
-                            rol = "Administrador";
+                            rol = "LogicaNegocio.Administrador";
                             break;
                         case 2:
-                            rol = "Coordinador";
+                            rol = "LogicaNegocio.Coordinador";
                             break;
                         case 3:
                             rol = "Empleado";
@@ -196,7 +196,7 @@ public class Administrador {
                     break;
             }
         } else {
-            System.out.println("No existe un empleado con el código " + codigo);
+            System.out.println("No existe un LogicaNegocio.empleado con el código " + codigo);
         }
         return "Modificacion exitosa";
 
@@ -204,13 +204,13 @@ public class Administrador {
     public void eliminarEmpleado() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese el codigo del empleado: ");
+        System.out.print("Ingrese el codigo del LogicaNegocio.empleado: ");
         String codigoE = scanner.next();
         scanner.nextLine();
         codigoE.equals(codigo);
 
         if (nombresLaboral.containsKey(codigo)) {
-            System.out.print("¿Está seguro que desea eliminar al empleado? (si/no): ");
+            System.out.print("¿Está seguro que desea eliminar al LogicaNegocio.empleado? (si/no): ");
             String respuesta = scanner.nextLine().toLowerCase();
             if (respuesta.equals("si")) {
                 nombresLaboral.remove(codigo);
@@ -218,7 +218,7 @@ public class Administrador {
                 numCedulas.remove(codigo);
                 roles.remove(codigo);
                 System.out.println("...");
-                System.out.println("Se ha eliminado el empleado exitosamente");
+                System.out.println("Se ha eliminado el LogicaNegocio.empleado exitosamente");
             } else if (respuesta.equals("no")) {
                 System.out.println("No se ha eliminado al usuario");
             } else {

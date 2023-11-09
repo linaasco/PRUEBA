@@ -1,13 +1,19 @@
+package LogicaNegocio;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class empleado {
+public class empleado extends Persona {
 
     private static HashMap<String, String> nombresLaboral = new HashMap<>();
 
     private static HashMap<String, String> horarios = new HashMap<>();
     private static HashMap<String, ArrayList<String>> mensajes = new HashMap<>();
+
+    public empleado(String codigo, String nombre, String rol, String tipoDoc, String numCedula, String horario, String mensaje, String codigoDestinatario) {
+        super(codigo, nombre, rol, tipoDoc, numCedula, horario, mensaje, codigoDestinatario);
+    }
 
     public void ejecutar(String rol, int codigoEmpleado) {
 
@@ -30,7 +36,7 @@ public class empleado {
                         reviMens(String.valueOf(codigoEmpleado));
                         break;
                     case 3:
-                        System.out.print("Ingrese el código del Coordinador: ");
+                        System.out.print("Ingrese el código del LogicaNegocio.Coordinador: ");
                         String codigoD = scanner.next();
                         scanner.nextLine();
                         mensCoor(codigoD);

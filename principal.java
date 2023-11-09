@@ -1,4 +1,8 @@
 
+import LogicaNegocio.Administrador;
+import LogicaNegocio.Coordinador;
+import LogicaNegocio.empleado;
+
 import java.util.Scanner;
 import java.util.HashMap;
 public class principal {
@@ -81,7 +85,7 @@ public class principal {
     }
     public static void registrarUsuario(Scanner scanner) {
         System.out.println("\nDiligencie los siguientes datos:");
-        System.out.print("\nCodigo de empleado: ");
+        System.out.print("\nCodigo de LogicaNegocio.empleado: ");
         codigo = scanner.nextLine();
         scanner.nextLine();
         if (!nombresLaboral.containsKey(codigo)) {
@@ -104,7 +108,7 @@ public class principal {
             int rolInt;
             do {
                 System.out.println("Seleccione su Rol: ");
-                System.out.print("1. Administrador, 2.  Coordinador, 3. Empleado: ");
+                System.out.print("1. LogicaNegocio.Administrador, 2.  LogicaNegocio.Coordinador, 3. Empleado: ");
                 rolInt = Integer.parseInt(scanner.nextLine());
                 if (rolInt >= 1 && rolInt <= 3) {
                     break;
@@ -115,12 +119,12 @@ public class principal {
             String rol;
             switch (rolInt) {
                 case 1:
-                    rol = "Administrador";
+                    rol = "LogicaNegocio.Administrador";
                     codigosAdministradores.put(codigo,rol);
 
                     break;
                 case 2:
-                    rol = "Coordinador";
+                    rol = "LogicaNegocio.Coordinador";
 
                     codigosCoordinadores.put(codigo,rol);
 
@@ -156,25 +160,25 @@ public class principal {
                     empleado empl = new empleado();
                     empl.ejecutar("Empleado", Integer.parseInt(codigo));
                 } else {
-                    System.out.println("Código de empleado no encontrado.");
+                    System.out.println("Código de LogicaNegocio.empleado no encontrado.");
                 }
                 break;
-            case "Administrador":
+            case "LogicaNegocio.Administrador":
                 if (codigosAdministradores.containsKey(codigo)){
                     Administrador admin = new Administrador();
-                    admin.ejecutar("Administrador", Integer.parseInt(codigo));
+                    admin.ejecutar("LogicaNegocio.Administrador", Integer.parseInt(codigo));
                 }
                 else {
-                    System.out.println("Código de empleado no encontrado.");
+                    System.out.println("Código de LogicaNegocio.empleado no encontrado.");
                 }
                 break;
-            case "Coordinador":
+            case "LogicaNegocio.Coordinador":
                 if (codigosCoordinadores.containsKey(codigo)){
                     Coordinador coor = new Coordinador();
-                    coor.ejecutar("Coordinador", Integer.parseInt(codigo));
+                    coor.ejecutar("LogicaNegocio.Coordinador", Integer.parseInt(codigo));
                 }
                 else {
-                    System.out.println("Código de empleado no encontrado.");
+                    System.out.println("Código de LogicaNegocio.empleado no encontrado.");
                 }
                 break;
 

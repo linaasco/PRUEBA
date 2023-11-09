@@ -1,18 +1,21 @@
+package LogicaNegocio;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class Coordinador {
-        private static String nombre;
-        private static String codigo;
-        private static String horario;
+public class Coordinador extends Persona {
+
         private static HashMap<String, String> nombresLaboral = new HashMap<>();
         private static HashMap<String, ArrayList<String>> mensajes = new HashMap<>();
         private static HashMap<String, String> horarios = new HashMap<>();
 
-        public void ejecutar(String rol, int codigoCoordinador) {
+    public Coordinador(String codigo, String nombre, String rol, String tipoDoc, String numCedula, String horario, String mensaje, String codigoDestinatario) {
+        super(codigo, nombre, rol, tipoDoc, numCedula, horario, mensaje, codigoDestinatario);
+    }
+
+    public void ejecutar(String rol, int codigoCoordinador) {
 
             Scanner scanner = new Scanner(System.in);
             while (true) {
@@ -22,7 +25,7 @@ public class Coordinador {
                 System.out.println("3. Modificar Horario");
                 System.out.println("4. Eliminar  Horario");
                 System.out.println("5. Revisar mensajes");
-                System.out.println("6. Enviar mensaje a Administrador");
+                System.out.println("6. Enviar mensaje a LogicaNegocio.Administrador");
                 System.out.println("7. Enviar mensaje a Empleado");
                 System.out.println("8. Salir");
                 System.out.print("Ingrese el numero de la opcion deseada: ");
@@ -32,21 +35,21 @@ public class Coordinador {
 
                 switch (opcion) {
                     case 1:
-                        System.out.println("Ingrese el codigo del empleado:");
+                        System.out.println("Ingrese el codigo del LogicaNegocio.empleado:");
                         String codigoEmpleado = scanner.next();
                         scanner.nextLine();
                         String horarioEmpleado = verHorarioE(codigoEmpleado);
                         System.out.println(horarioEmpleado);
                         break;
                     case 2:
-                        System.out.println("Ingrese el codigo del empleado:");
+                        System.out.println("Ingrese el codigo del LogicaNegocio.empleado:");
                         String codigoEmpleado2 = scanner.next();
                         scanner.nextLine();
                         String nuevohorario = registrarHorario(codigoEmpleado2);
                         System.out.println(nuevohorario);
                         break;
                     case 3:
-                        System.out.println("Ingrese el codigo del empleado:");
+                        System.out.println("Ingrese el codigo del LogicaNegocio.empleado:");
                         String codigoEmpleado3 = scanner.next();
                         scanner.nextLine();
                         String cambioHorario = modificarHorario(codigoEmpleado3);
@@ -54,7 +57,7 @@ public class Coordinador {
 
                         break;
                     case 4:
-                        System.out.println("Ingrese el codigo del empleado:");
+                        System.out.println("Ingrese el codigo del LogicaNegocio.empleado:");
                         String codigoEmpleado4 = scanner.next();
                         scanner.nextLine();
                         String eliminar = eliminarHorario(codigoEmpleado4);
@@ -64,7 +67,7 @@ public class Coordinador {
                         reviMens(String.valueOf(codigoCoordinador));
                         break;
                     case 6:
-                        System.out.print("Ingrese el codigo del Administrador: ");
+                        System.out.print("Ingrese el codigo del LogicaNegocio.Administrador: ");
                         String codigoDestinatario = scanner.next();
                         String enviar = mensAdmin(codigoDestinatario);
                         System.out.println(enviar);
@@ -109,7 +112,7 @@ public class Coordinador {
                 horarios.put(codigo, horario);
                 return "Se ha asignado el horario exitosamente";
             } else {
-                return "No existe un empleado con el código " + codigo;
+                return "No existe un LogicaNegocio.empleado con el código " + codigo;
             }
 
         }
@@ -121,16 +124,16 @@ public class Coordinador {
                 nombre = nombresLaboral.get(codigo);
                 if (horario != null) {
                     horario = horarios.get(codigo);
-                    System.out.println("El horario asignado del empleado " + nombre + " es : " + horario);
+                    System.out.println("El horario asignado del LogicaNegocio.empleado " + nombre + " es : " + horario);
                     System.out.print("Ingrese el nuevo horario: ");
                     horario = scanner.nextLine();
                     horarios.put(codigo, horario);
                     return "Se ha modificado el horario exitosamente";
                 } else {
-                    return "\nEl empleado no tiene parametrizado ningun horario";
+                    return "\nEl LogicaNegocio.empleado no tiene parametrizado ningun horario";
                 }
             } else {
-                return "No existe un empleado con el código " + codigo;
+                return "No existe un LogicaNegocio.empleado con el código " + codigo;
             }
         }
     public String eliminarHorario(String codigo) {
@@ -140,7 +143,7 @@ public class Coordinador {
             nombre = nombresLaboral.get(codigo);
             if (horario != null) {
                 horario = horarios.get(codigo);
-                System.out.println("El empleado " + nombre + " tiene asignado el horario: "+ horario);
+                System.out.println("El LogicaNegocio.empleado " + nombre + " tiene asignado el horario: "+ horario);
                 System.out.print("¿Está seguro que desea eliminar el horario? (si/no): ");
                 String respuesta = scanner.nextLine().toLowerCase();
                 if (respuesta.equals("si")) {
@@ -153,7 +156,7 @@ public class Coordinador {
                     return "Respuesta invalida. Ingrese 'si' o 'no'";
                 }
             } else {
-                return "El empleado no tiene asignado ningun horario";
+                return "El LogicaNegocio.empleado no tiene asignado ningun horario";
             }
         } else {
             System.out.println("...");
